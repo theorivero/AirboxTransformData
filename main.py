@@ -29,4 +29,4 @@ reev_df['Empresa'] = CleanCompanyName(reev_df,pctrl_df)
 reev_df['Telefone'],reev_df['Celular'] = CleanPhones(pctrl_df)
 reev_df['URL'] = pctrl_df['Site']
 new_csv_name = input('Digite o nome do novo arquivo csv')
-reev_df.to_csv('ListaReev.csv')
+reev_df.to_csv(f'{new_csv_name}.csv')
