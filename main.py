@@ -27,4 +27,6 @@ reev_df['Sobrenome'] = CleanLastNames(pctrl_df)
 reev_df['E-mail'] = CleanEmail(reev_df,pctrl_df)
 reev_df['Empresa'] = CleanCompanyName(reev_df,pctrl_df)
 reev_df['Telefone'],reev_df['Celular'] = CleanPhones(pctrl_df)
-print(reev_df['Celular'].value_counts())
+reev_df['URL'] = pctrl_df['Site']
+new_csv_name = input('Digite o nome do novo arquivo csv')
+reev_df.to_csv('ListaReev.csv')
