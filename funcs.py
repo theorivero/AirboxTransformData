@@ -59,3 +59,25 @@ def CleanEmail(new_df, old_df):
     new_df['E-mail'] = [listToString(l) for l in new_df['E-mail']]
     
     return new_df['E-mail']
+
+def ChooseCompanyName(company_names):  
+    if company_names[0] != '-':
+        company_name = company_names[0] 
+    else:
+        company_name = company_names[1]
+    return company_name
+
+def CleanCompanyName(new_df, old_df):
+    old_df["nome fantasia"].fillna('-', inplace=True) 
+    fantasy_name = old_df["nome fantasia"]
+    both_company_names = []
+    razao_social = old_df["razao social"]
+
+    for fantasy,razao in zip(fantasy_name, razao_social):
+        both_company_names.append([fantasy,razao])
+    
+    both_company_names_df = pd.DataFrame({'Empresa':both_company_names})
+    new_df['Empresa'] = both_company_names_df["Empresa"]
+    new_df['Empresa'] = [ChooseCompanyName(names) for names in new_df['Empresa']]
+
+    return new_df['Empresa']

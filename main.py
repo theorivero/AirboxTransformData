@@ -25,4 +25,5 @@ reev_df = pd.DataFrame({'Nome':[],
 reev_df['Nome'] = CleanNames(pctrl_df)
 reev_df['Sobrenome'] = CleanLastNames(pctrl_df)
 reev_df['E-mail'] = CleanEmail(reev_df,pctrl_df)
-print(reev_df['E-mail'].value_counts())
+reev_df['Empresa'] = CleanCompanyName(reev_df,pctrl_df)
+print(reev_df['Empresa'].value_counts())
