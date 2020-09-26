@@ -81,3 +81,25 @@ def CleanCompanyName(new_df, old_df):
     new_df['Empresa'] = [ChooseCompanyName(names) for names in new_df['Empresa']]
 
     return new_df['Empresa']
+
+def CleanPhones(old_df):
+    old_df['telefone'].fillna('-', inplace=True)
+    phones = []
+    cellphones = []
+
+    for phone in old_df['telefone']:
+        if phone != "-":
+            phone = phone.split(',') 
+            phones.append(phone[0])
+            try:
+                cellphones.append(phone[1])
+            except:
+                cellphones.append('-')                
+        else:
+            phones.append('-')
+            cellphones.append('-')
+
+    phones_df = pd.DataFrame({'Telefone':phones})
+    cellphones_df = pd.DataFrame({'Celular':cellphones})
+
+    return phones_df['Telefone'],cellphones_df['Celular']
