@@ -103,3 +103,34 @@ def CleanPhones(old_df):
     cellphones_df = pd.DataFrame({'Celular':cellphones})
 
     return phones_df['Telefone'],cellphones_df['Celular']
+
+def run(df_path):
+    old_df = pd.read_csv(f'{df_path}')
+    new_df = pd.DataFrame({'Nome':[],
+                        'Sobrenome':[],
+                        'E-mail':[],
+                        "Empresa":[],
+                        "Cargo":[],
+                        "Telefone":[],
+                        "Celular":[],
+                        "Endereço":[],
+                        "URL":[],
+                        "Linkedin":[],
+                        "Variável 1":[],
+                        "Variável 2":[],
+                        "Variável 3":[],
+                        "Grupo":[],
+                        "Origem(dropdown)":[],
+                        "Segmento(dropdown)":[],
+                        "Quantidade de funcionários(input)":[],
+                        "Utiliza alguma ferramenta(input)":[]})
+
+
+    new_df['Nome'] = CleanNames(old_df)
+    new_df['Sobrenome'] = CleanLastNames(old_df)
+    new_df['E-mail'] = CleanEmail(new_df,old_df)
+    new_df['Empresa'] = CleanCompanyName(new_df,old_df)
+    new_df['Telefone'],new_df['Celular'] = CleanPhones(old_df)
+    new_df['URL'] = old_df['Site']
+    new_csv_name = input('Digite o nome do novo arquivo csv')
+    new_df.to_csv(f'{new_csv_name}.csv')
