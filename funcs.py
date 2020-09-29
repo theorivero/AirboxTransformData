@@ -132,5 +132,4 @@ def run(df_path):
     new_df['Empresa'] = CleanCompanyName(new_df,old_df)
     new_df['Telefone'],new_df['Celular'] = CleanPhones(old_df)
     new_df['URL'] = old_df['Site']
-    new_csv_name = input('Digite o nome do novo arquivo csv')
-    new_df.to_csv(f'{new_csv_name}.csv')
+    new_df.to_csv('reev.csv')
